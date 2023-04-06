@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="technic_gps_zone_action" model="ir.actions.act_window">
+        <field name="name">GPS zones</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gps.zone</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="GPS" id="gps_config_menu"
+              parent="l10n_mn_technic.technic_configuration_menu"
+                sequence="25"/>
+
+    <menuitem action="technic_gps_zone_action" id="gps_zone_menu"
+			  parent="gps_config_menu"
+			  sequence="10"/>
+</odoo>

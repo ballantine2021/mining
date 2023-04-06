@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gps_trip_report,access.gps.trip.report,model_gps_trip_report,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_trip_report_line,access.gps.trip.report.line,model_gps_trip_report_line,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_zone,access.gps.zone,model_gps_zone,l10n_mn_technic.group_manager,1,0,0,0
