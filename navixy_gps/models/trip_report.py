@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 import logging
-import requests
+import requests, re, pytz
+from datetime import datetime
 from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 HEADERS = {'Accept': 'application/json'}
 API_HASH = '0e7850f9427e5133ca1cccc2fd3f5104'
 NAVIXY_URL = 'https://api.gaikham.com/'
+NAVIXY_TZ = pytz.timezone('Asia/Ulaanbaatar')
 
 class GPSTripReport(models.Model):
     _name = 'gps.trip.report'
@@ -58,14 +60,21 @@ class GPSTripReport(models.Model):
         r = requests.post(url=NAVIXY_URL+'report/tracker/retrieve', headers=HEADERS, json=req)
         if r.status_code == 200:
             self.line_ids.unlink()
+            zone_obj = self.env['gps.zone']
             for day in r.json()['report']['sheets'][0]['sections'][0]['data']:
                 for row in day['rows']:
                     if row['length']['raw'] > 0:
+                        date_char = day['header'].split('(')[0].strip()
+                        line_date = datetime.strptime(date_char, "%Y-%m-%d").date()
                         self.line_ids.create({
                             'report_id':    self.id,
-                            'line_date':    day['header'],
-                            'from_loc':     row['from']['v'],
-                            'to_loc':       row['to']['v'],
+                            'line_date':    line_date,
+                            'from_loc_char' : row['from']['v'],
+                            'to_loc_char'   :row['to']['v'],
+                            'from_loc':     zone_obj.parse_text(row['from']['v']),
+                            'to_loc':       zone_obj.parse_text(row['to']['v']),
+                            'from_time':    parse_datetime(date_char,row['from']['v']),
+                            'to_time':      parse_datetime(date_char,row['to']['v']),
                             'length':       row['length']['v'],
                             'time_sec':     row['time']['raw'],
                             'time_string':  row['time']['v'],
@@ -83,10 +92,14 @@ class GPSTripReport(models.Model):
 class GPSTripReportLines(models.Model):
     _name = 'gps.trip.report.line'
 
-    line_date   = fields.Char('Line date')
-    report_id   = fields.Many2one('gps.trip.report', required=True)
+    line_date   = fields.Date('Line date')
+    report_id   = fields.Many2one('gps.trip.report', required=True, ondelete='cascade')
     from_loc    = fields.Many2one('gps.zone','From', ondelete='restrict')
     to_loc      = fields.Many2one('gps.zone','To', ondelete='restrict')
+    from_loc_char   = fields.Char('From')
+    to_loc_char     = fields.Char('To')
+    from_time   = fields.Datetime('From time')
+    to_time   = fields.Datetime('To time')
     length      = fields.Float('Length')
     time_sec    = fields.Float('Time seconds')
     time_string = fields.Char('Time')
@@ -95,3 +108,10 @@ class GPSTripReportLines(models.Model):
     fuel_consumption    = fields.Float('Fuel consumption')
     idle_sec            = fields.Float('Idle duration (sec)')
     idle_string         = fields.Char('Idle duration')
+
+
+def parse_datetime(char_date, char_hour_min):
+    server_tz = pytz.timezone('GMT')
+    parsed = re.search(r'\d{2}:\d{2}', char_hour_min).group()  # extract time using regex
+    from_dt = datetime.strptime(char_date + ' ' + parsed, '%Y-%m-%d %H:%M')
+    return NAVIXY_TZ.localize(from_dt, is_dst=None).astimezone(server_tz)
