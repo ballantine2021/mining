@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+	<record id="gps_stop_report_form" model="ir.ui.view">
+		<field name="name">gps.stop.report.form</field>
+		<field name="model">gps.stop.report</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<group>
+						<field name="nav_report_id"/>
+						<field name="date"/>
+					</group>
+				</group>
+				<notebook >
+					<page string="Stops">
+						<field name="line_ids">
+							<tree>
+								<field name="technic_id"/>
+								<field name="line_date"/>
+								<field name="loc"/>
+								<field name="from_time"/>
+								<field name="to_time"/>
+								<field name="idle_string"/>
+								<field name="ignition_string"/>
+							</tree>
+						</field>
+					</page>
+				</notebook>
+			</form>
+		</field>
+	</record>
+
+	<record id="gps_stop_report_tree" model="ir.ui.view">
+		<field name="name">gps.stop.report.tree</field>
+		<field name="model">gps.stop.report</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="date"/>
+				<field name="state"/>
+			</tree>
+		</field>
+		</record>
+
+	<record id="gps_stop_report_line_tree" model="ir.ui.view">
+		<field name="name">gps.stop.report.line.tree</field>
+		<field name="model">gps.stop.report.line</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="technic_id"/>
+				<field name="line_date"/>
+				<field name="loc"/>
+				<field name="from_time"/>
+				<field name="to_time"/>
+				<field name="idle_string"/>
+				<field name="ignition_string"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="technic_gps_stop_report_action" model="ir.actions.act_window">
+        <field name="name">Stop report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gps.stop.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+	<record id="technic_gps_stop_report_line_action" model="ir.actions.act_window">
+        <field name="name">Stop report lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gps.stop.report.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+    <menuitem action="technic_gps_stop_report_action" id="gps_stop_report_menu"
+			  parent="l10n_mn_technic.technic_report_menu"
+			  sequence="20"/>
+
+	<menuitem action="technic_gps_stop_report_line_action" id="gps_stop_report_line_menu"
+		  parent="l10n_mn_technic.technic_report_menu"
+		  sequence="25"/>
+
+</odoo>

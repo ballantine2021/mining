@@ -13,6 +13,7 @@
     """,
     'data': [
         'views/technic_views.xml',
+        'views/stop_report_views.xml',
         'views/gps_views.xml',
         'data/ir_cron.xml',
         'security/ir.model.access.csv'

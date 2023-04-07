@@ -17,8 +17,8 @@
         <field name="interval_type">hours</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="False"/>
-        <field eval="'gps.trip.report'" name="model"/>
-        <field eval="'create_report'" name="function"/>
+        <field eval="'gps.report'" name="model"/>
+        <field eval="'generate_reports'" name="function"/>
     </record>
 
     <record model="ir.cron" id="navixy_report_retrieve_cron">
@@ -28,7 +28,7 @@
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="False"/>
-        <field eval="'gps.trip.report'" name="model"/>
+        <field eval="'gps.report'" name="model"/>
         <field eval="'check_report'" name="function"/>
     </record>
 </odoo>

@@ -3,7 +3,7 @@ from odoo import models, fields, api
 import logging
 import requests, re
 from odoo.exceptions import UserError
-from trip_report import HEADERS, API_HASH, NAVIXY_URL
+from gps_report import HEADERS, API_HASH, NAVIXY_URL
 _logger = logging.getLogger(__name__)
 
 class GPSZone(models.Model):
@@ -35,7 +35,11 @@ class GPSZone(models.Model):
         if zone:
             parsed = zone.group(1)
         else:
-            parsed = txt.split('-')[1].strip()
+            text_split = txt.split('-')
+            if len(text_split)>1:
+                parsed = text_split[1]
+            else:
+                parsed = text_split
         for rec in self.search([('name','=',parsed)]):
             return rec.id
         return self.create({'name': parsed}).id

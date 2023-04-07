@@ -2,43 +2,21 @@
 
 from odoo import models, fields, api, _
 import logging
-import requests, re, pytz
+import requests
 import datetime
+from gps_report import HEADERS, API_HASH, NAVIXY_URL, parse_datetime
 from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
-HEADERS = {'Accept': 'application/json'}
-API_HASH = '0e7850f9427e5133ca1cccc2fd3f5104'
-NAVIXY_URL = 'https://api.gaikham.com/'
-NAVIXY_TZ = pytz.timezone('Asia/Ulaanbaatar')
-
 class GPSTripReport(models.Model):
     _name = 'gps.trip.report'
+    _inherit = ['gps.report']
 
     # technic_id      = fields.Many2one('technic', 'Technic', required=True)
-    nav_report_id   = fields.Integer('Navixy report ID', readonly=True)
     line_ids        = fields.One2many('gps.trip.report.line', 'report_id', 'Report lines', readonly=True)
-    date            = fields.Date('Date', required=True)
-    state           = fields.Selection([('in_process','In process'),('done','Done'),('fail','Fail')])
 
-    def create_report(self):
-        # Get the current date
-        yesterday = datetime.date.today() - datetime.timedelta(days=1)
-        # Get the start time for yesterday
-        start_time = datetime.datetime.combine(yesterday, datetime.time.min)
-        # Get the end time for yesterday
-        end_time = datetime.datetime.combine(yesterday, datetime.time.max)
-        technic_ids = self.env['technic'].search([('gps_tracker_id','!=',False)])
-
-        req = {
-            'hash': API_HASH,
-            'trackers': [t.gps_tracker_id for t in technic_ids],
-            'from': start_time.strftime('%Y-%m-%d %H:%M:%S'),
-            'to': end_time.strftime('%Y-%m-%d %H:%M:%S'),
-            'time_filter': {"from": "00:00:00",
-                           "to": "23:59:59",
-                           "weekdays": [1,2,3,4,5,6,7]},
-            'plugin': {
+    def get_plugin(self):
+        return {
                 "hide_empty_tabs": True,
                 "plugin_id": 4,
                 "show_seconds": False,
@@ -48,29 +26,6 @@ class GPSTripReport(models.Model):
                 "show_coordinates": False,
                 "filter": True,
                 "group_by_driver": False}
-        }
-        r = requests.post(url=NAVIXY_URL+'report/tracker/generate', headers=HEADERS, json=req)
-        if r.status_code == 200:
-            json = r.json()
-            if json['success']:
-                self.create({
-                    'nav_report_id': r.json()['id'],
-                    'date': yesterday,
-                    'state': 'in_process',
-                })
-        return
-
-    def check_report(self):
-        for report in self.search([('state','=','in_process')]):
-            req = {
-                'hash': API_HASH,
-                'report_id': report.nav_report_id
-            }
-            r = requests.post(url=NAVIXY_URL+'report/tracker/status', headers=HEADERS, json=req)
-            if r.status_code == 200:
-                json = r.json()
-                if json['success'] and json['percent_ready'] == 100:
-                    report.retrieve()
 
     def retrieve(self):
         req = {
@@ -134,9 +89,3 @@ class GPSTripReportLines(models.Model):
     idle_sec            = fields.Float('Idle duration (sec)')
     idle_string         = fields.Char('Idle duration')
 
-
-def parse_datetime(char_date, char_hour_min):
-    server_tz = pytz.timezone('GMT')
-    parsed = re.search(r'\d{2}:\d{2}', char_hour_min).group()  # extract time using regex
-    from_dt = datetime.datetime.strptime(char_date + ' ' + parsed, '%Y-%m-%d %H:%M')
-    return NAVIXY_TZ.localize(from_dt, is_dst=None).astimezone(server_tz)
