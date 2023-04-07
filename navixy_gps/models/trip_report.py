@@ -3,7 +3,7 @@
 from odoo import models, fields, api, _
 import logging
 import requests, re, pytz
-from datetime import datetime
+import datetime
 from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
@@ -15,18 +15,26 @@ NAVIXY_TZ = pytz.timezone('Asia/Ulaanbaatar')
 class GPSTripReport(models.Model):
     _name = 'gps.trip.report'
 
-    technic_id      = fields.Many2one('technic', 'Technic', required=True)
+    # technic_id      = fields.Many2one('technic', 'Technic', required=True)
     nav_report_id   = fields.Integer('Navixy report ID', readonly=True)
     line_ids        = fields.One2many('gps.trip.report.line', 'report_id', 'Report lines', readonly=True)
-    date_from       = fields.Datetime('Date from', required=True)
-    date_to         = fields.Datetime('Date to', required=True)
+    date            = fields.Date('Date', required=True)
+    state           = fields.Selection([('in_process','In process'),('done','Done'),('fail','Fail')])
 
     def create_report(self):
+        # Get the current date
+        yesterday = datetime.date.today() - datetime.timedelta(days=1)
+        # Get the start time for yesterday
+        start_time = datetime.datetime.combine(yesterday, datetime.time.min)
+        # Get the end time for yesterday
+        end_time = datetime.datetime.combine(yesterday, datetime.time.max)
+        technic_ids = self.env['technic'].search([('gps_tracker_id','!=',False)])
+
         req = {
             'hash': API_HASH,
-            'trackers': [self.technic_id.gps_tracker_id],
-            'from': self.date_from,
-            'to': self.date_to,
+            'trackers': [t.gps_tracker_id for t in technic_ids],
+            'from': start_time.strftime('%Y-%m-%d %H:%M:%S'),
+            'to': end_time.strftime('%Y-%m-%d %H:%M:%S'),
             'time_filter': {"from": "00:00:00",
                            "to": "23:59:59",
                            "weekdays": [1,2,3,4,5,6,7]},
@@ -41,18 +49,30 @@ class GPSTripReport(models.Model):
                 "filter": True,
                 "group_by_driver": False}
         }
-        # _logger.info(req)
         r = requests.post(url=NAVIXY_URL+'report/tracker/generate', headers=HEADERS, json=req)
         if r.status_code == 200:
-            self.nav_report_id = r.json()['id']
-        else:
-            raise UserError(_('Connection error!'))
-        # _logger.info(r.json())
+            json = r.json()
+            if json['success']:
+                self.create({
+                    'nav_report_id': r.json()['id'],
+                    'date': yesterday,
+                    'state': 'in_process',
+                })
         return
 
-    def retrieve_report(self):
-        if not self.nav_report_id:
-            return
+    def check_report(self):
+        for report in self.search([('state','=','in_process')]):
+            req = {
+                'hash': API_HASH,
+                'report_id': report.nav_report_id
+            }
+            r = requests.post(url=NAVIXY_URL+'report/tracker/status', headers=HEADERS, json=req)
+            if r.status_code == 200:
+                json = r.json()
+                if json['success'] and json['percent_ready'] == 100:
+                    report.retrieve()
+
+    def retrieve(self):
         req = {
             'hash': API_HASH,
             'report_id': self.nav_report_id
@@ -61,31 +81,35 @@ class GPSTripReport(models.Model):
         if r.status_code == 200:
             self.line_ids.unlink()
             zone_obj = self.env['gps.zone']
-            for day in r.json()['report']['sheets'][0]['sections'][0]['data']:
-                for row in day['rows']:
-                    if row['length']['raw'] > 0:
-                        date_char = day['header'].split('(')[0].strip()
-                        line_date = datetime.strptime(date_char, "%Y-%m-%d").date()
-                        self.line_ids.create({
-                            'report_id':    self.id,
-                            'line_date':    line_date,
-                            'from_loc_char' : row['from']['v'],
-                            'to_loc_char'   :row['to']['v'],
-                            'from_loc':     zone_obj.parse_text(row['from']['v']),
-                            'to_loc':       zone_obj.parse_text(row['to']['v']),
-                            'from_time':    parse_datetime(date_char,row['from']['v']),
-                            'to_time':      parse_datetime(date_char,row['to']['v']),
-                            'length':       row['length']['v'],
-                            'time_sec':     row['time']['raw'],
-                            'time_string':  row['time']['v'],
-                            'avg_speed':    row['avg_speed']['v'],
-                            'max_speed':    row['max_speed']['v'],
-                            'idle_sec':     row['idle_duration']['raw'],
-                            'idle_string':  row['idle_duration']['v'],
-                            'fuel_consumption': row['sensor_61560']['raw']
-                        })
+            for sheet in r.json()['report']['sheets']:
+                for technic_id in self.env['technic'].search([('gps_tracker_id','=',sheet['entity_ids'][0])]):
+                    for day in sheet['sections'][0]['data']:
+                        for row in day['rows']:
+                            if row['length']['raw'] > 0:
+                                date_char = day['header'].split('(')[0].strip()
+                                line_date = datetime.datetime.strptime(date_char, "%Y-%m-%d").date()
+                                self.line_ids.create({
+                                    'report_id':    self.id,
+                                    'technic_id':   technic_id.id,
+                                    'line_date':    line_date,
+                                    'from_loc_char' : row['from']['v'],
+                                    'to_loc_char'   :row['to']['v'],
+                                    'from_loc':     zone_obj.parse_text(row['from']['v']),
+                                    'to_loc':       zone_obj.parse_text(row['to']['v']),
+                                    'from_time':    parse_datetime(date_char,row['from']['v']),
+                                    'to_time':      parse_datetime(date_char,row['to']['v']),
+                                    'length':       row['length']['v'],
+                                    'time_sec':     row['time']['raw'],
+                                    'time_string':  row['time']['v'],
+                                    'avg_speed':    row['avg_speed']['v'],
+                                    'max_speed':    row['max_speed']['v'],
+                                    'idle_sec':     row['idle_duration']['raw'],
+                                    'idle_string':  row['idle_duration']['v'],
+                                    'fuel_consumption': row['sensor_61560']['raw']
+                                })
+            self.state = 'done'
         else:
-            raise UserError(_('Connection error!'))
+            _logger.info(r.content)
         return
 
 
@@ -93,6 +117,7 @@ class GPSTripReportLines(models.Model):
     _name = 'gps.trip.report.line'
 
     line_date   = fields.Date('Line date')
+    technic_id  = fields.Many2one('technic', ondelete='restrict')
     report_id   = fields.Many2one('gps.trip.report', required=True, ondelete='cascade')
     from_loc    = fields.Many2one('gps.zone','From', ondelete='restrict')
     to_loc      = fields.Many2one('gps.zone','To', ondelete='restrict')
@@ -113,5 +138,5 @@ class GPSTripReportLines(models.Model):
 def parse_datetime(char_date, char_hour_min):
     server_tz = pytz.timezone('GMT')
     parsed = re.search(r'\d{2}:\d{2}', char_hour_min).group()  # extract time using regex
-    from_dt = datetime.strptime(char_date + ' ' + parsed, '%Y-%m-%d %H:%M')
+    from_dt = datetime.datetime.strptime(char_date + ' ' + parsed, '%Y-%m-%d %H:%M')
     return NAVIXY_TZ.localize(from_dt, is_dst=None).astimezone(server_tz)

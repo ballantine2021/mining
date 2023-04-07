@@ -16,27 +16,22 @@
 		<field name="model">gps.trip.report</field>
 		<field name="arch" type="xml">
 			<form>
-                <header>
-					<button name="create_report" type="object" string="Create report" />
-					<button name="retrieve_report" type="object" string="Retrieve" class="btn-info"/>
-                </header>
 				<group>
 					<group>
-						<field name="technic_id"/>
-					</group>
-					<group>
-						<field name="date_from"/>
-						<field name="date_to"/>
+						<field name="nav_report_id"/>
+						<field name="date"/>
 					</group>
 				</group>
 				<notebook >
 					<page string="Trips">
 						<field name="line_ids">
 							<tree>
+								<field name="technic_id"/>
 								<field name="line_date"/>
 								<field name="from_loc"/>
 								<field name="to_loc"/>
 								<field name="time_string"/>
+								<field name="length"/>
 								<field name="avg_speed"/>
 								<field name="fuel_consumption"/>
 								<field name="idle_string"/>
@@ -44,39 +39,46 @@
 						</field>
 					</page>
 				</notebook>
-				<field name="nav_report_id"/>
 			</form>
 		</field>
 	</record>
-
-		<record id="gps_trip_report_tree" model="ir.ui.view">
-		<field name="name">gps.trip.report.tree</field>
-		<field name="model">gps.trip.report</field>
-		<field name="arch" type="xml">
-			<tree>
-				<field name="technic_id"/>
-				<field name="date_from"/>
-				<field name="date_to"/>
-			</tree>
-		</field>
-		</record>
 
 	<record id="gps_trip_report_tree" model="ir.ui.view">
 		<field name="name">gps.trip.report.tree</field>
 		<field name="model">gps.trip.report</field>
 		<field name="arch" type="xml">
 			<tree>
+				<field name="date"/>
+				<field name="state"/>
+			</tree>
+		</field>
+		</record>
+
+	<record id="gps_trip_report_line_tree" model="ir.ui.view">
+		<field name="name">gps.trip.report.line.tree</field>
+		<field name="model">gps.trip.report.line</field>
+		<field name="arch" type="xml">
+			<tree>
 				<field name="technic_id"/>
+				<field name="line_date"/>
+				<field name="from_loc"/>
+				<field name="to_loc"/>
+				<field name="time_string"/>
+				<field name="length"/>
+				<field name="avg_speed"/>
+				<field name="fuel_consumption"/>
+				<field name="idle_string"/>
 			</tree>
 		</field>
 	</record>
 
+
 	<record id="technic_gps_trip_report_action" model="ir.actions.act_window">
         <field name="name">Trip report</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">gps.trip.report</field>
+        <field name="res_model">gps.trip.report.line</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree</field>
     </record>
 
 
