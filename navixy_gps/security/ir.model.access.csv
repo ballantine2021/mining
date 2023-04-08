@@ -5,3 +5,8 @@ access_gps_trip_report_line,access.gps.trip.report.line,model_gps_trip_report_li
 access_gps_zone,access.gps.zone,model_gps_zone,l10n_mn_technic.group_manager,1,0,0,0
 access_gps_stop_report,access.gps.stop.report,model_gps_stop_report,l10n_mn_technic.group_manager,1,1,1,1
 access_gps_stop_report_line,access.gps.stop.report.line,model_gps_stop_report_line,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_zone_report,access.gps.zone.report,model_gps_zone_report,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_zone_report_line,access.gps.zone.report.line,model_gps_zone_report_line,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_fuel_report,access.gps.fuel.report,model_gps_fuel_report,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_fuel_report_line,access.gps.fuel.report.line,model_gps_fuel_report_line,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_fuel_fill_report,access.gps.fuel.fill.report,model_gps_fuel_fill_report,l10n_mn_technic.group_manager,1,1,1,1

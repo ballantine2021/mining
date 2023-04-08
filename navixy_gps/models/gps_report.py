@@ -4,8 +4,7 @@ import requests, datetime, re, pytz
 import logging
 _logger = logging.getLogger(__name__)
 
-# GPS_MODELS = ['gps.trip.report','gps.stop.report']
-GPS_MODELS = ['gps.zone.report']
+GPS_MODELS = ['gps.trip.report','gps.stop.report','gps.zone.report','gps.fuel.report']
 HEADERS = {'Accept': 'application/json'}
 API_HASH = '0e7850f9427e5133ca1cccc2fd3f5104'
 NAVIXY_URL = 'https://api.gaikham.com/'
