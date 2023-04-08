@@ -8,6 +8,10 @@
         <field name="view_mode">tree</field>
     </record>
 
+    <menuitem name="GPS" id="gps_report_menu"
+              parent="l10n_mn_technic.technic_report_menu"
+                sequence="25"/>
+
     <menuitem name="GPS" id="gps_config_menu"
               parent="l10n_mn_technic.technic_configuration_menu"
                 sequence="25"/>

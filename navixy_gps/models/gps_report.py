@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 import requests, datetime, re, pytz
+import logging
+_logger = logging.getLogger(__name__)
 
 # GPS_MODELS = ['gps.trip.report','gps.stop.report']
-GPS_MODELS = ['gps.stop.report']
+GPS_MODELS = ['gps.zone.report']
 HEADERS = {'Accept': 'application/json'}
 API_HASH = '0e7850f9427e5133ca1cccc2fd3f5104'
 NAVIXY_URL = 'https://api.gaikham.com/'
@@ -63,7 +65,20 @@ class GPSReport(models.AbstractModel):
                 if r.status_code == 200:
                     json = r.json()
                     if json['success'] and json['percent_ready'] == 100:
-                        report.retrieve()
+                        self.retrieve_report(report)
+
+    def retrieve_report(self, report):
+        req = {
+            'hash': API_HASH,
+            'report_id': report.nav_report_id
+        }
+        r = requests.post(url=NAVIXY_URL+'report/tracker/retrieve', headers=HEADERS, json=req)
+        if r.status_code == 200:
+            report.process_json(r.json())
+            report.state = 'done'
+        else:
+            _logger.info(r.content)
+            report.state = 'fail'
 
 
 def parse_datetime(char_date, char_hour_min):
