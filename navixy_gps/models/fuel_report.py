@@ -79,7 +79,7 @@ class GPSFuelReport(models.Model):
 class GPSFuelReportLines(models.Model):
     _name = 'gps.fuel.report.line'
 
-    line_date   = fields.Datetime('Line date')
+    line_date   = fields.Date('Line date')
     technic_id  = fields.Many2one('technic', ondelete='restrict')
     report_id   = fields.Many2one('gps.fuel.report', required=True, ondelete='cascade')
     mileage     = fields.Float('Mileage')
@@ -95,7 +95,7 @@ class GPSFuelReportLines(models.Model):
 class GPSFuelFillReport(models.Model):
     _name = 'gps.fuel.fill.report'
 
-    line_datetime = fields.Date('Line date')
+    line_datetime = fields.Datetime('Line date')
     technic_id  = fields.Many2one('technic', ondelete='restrict')
     report_id   = fields.Many2one('gps.fuel.report', required=True, ondelete='cascade')
     volume      = fields.Float('Volume')

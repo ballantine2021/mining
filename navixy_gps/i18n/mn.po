@@ -1,0 +1,582 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* navixy_gps
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e-20201201\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-08 06:55+0000\n"
+"PO-Revision-Date: 2023-04-08 06:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_avg_speed
+msgid "Average speed"
+msgstr "Дундаж хурд"
+
+#. module: navixy_gps
+#: code:addons/navixy_gps/models/zone.py:29
+#, python-format
+msgid "Connection error!"
+msgstr "Connection error!"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_consumed
+msgid "Consumed"
+msgstr "Зарцуулалт Л"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_consumpt_per_dist
+msgid "Consumption per distance"
+msgstr "Зарцуулалт Л/100км"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_create_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_create_uid
+msgid "Created by"
+msgstr "Үүсгэгч"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_create_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_create_date
+msgid "Created on"
+msgstr "Үүсгэсэн"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_report_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_date
+msgid "Date"
+msgstr "Огноо"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_detailed_line_ids
+msgid "Detailed lines"
+msgstr "Хугацааны дэлгэрэнгүй"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.gps_fuel_report_form
+msgid "Detailed report"
+msgstr "Дэлгэрэнгүй"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_report_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_display_name
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_display_name
+msgid "Display Name"
+msgstr "Дэлгэцийн Нэр"
+
+#. module: navixy_gps
+#: selection:gps.fuel.report,state:0
+#: selection:gps.report,state:0
+#: selection:gps.stop.report,state:0
+#: selection:gps.trip.report,state:0
+#: selection:gps.zone.report,state:0
+msgid "Done"
+msgstr "Татагдсан"
+
+#. module: navixy_gps
+#: selection:gps.fuel.fill.report,type:0
+msgid "Drain"
+msgstr "Алдагдал"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_drains_count
+msgid "Drains count"
+msgstr "Алдсан тоо"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_drains_volume
+msgid "Drains volume"
+msgstr "Алдагдлын хэмжээ"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_duration_string
+msgid "Duration"
+msgstr "Үргэлжлэх хугацаа"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_duration_sec
+msgid "Duration /sec/"
+msgstr "Хугацаа /сек/"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_end_bal
+msgid "End balance"
+msgstr "Эцсийн үлдэгдэл"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_end_vol
+msgid "End volume"
+msgstr "Эцсийн үлдэгдэл"
+
+#. module: navixy_gps
+#: selection:gps.fuel.report,state:0
+#: selection:gps.report,state:0
+#: selection:gps.stop.report,state:0
+#: selection:gps.trip.report,state:0
+#: selection:gps.zone.report,state:0
+msgid "Fail"
+msgstr "Алдаа"
+
+#. module: navixy_gps
+#: selection:gps.fuel.fill.report,type:0
+msgid "Fill"
+msgstr "Цэнэглэлт"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_type
+#: model:ir.ui.view,arch_db:navixy_gps.gps_fuel_report_form
+msgid "Fill/drain"
+msgstr "Цэнэглэлт/Алдагдал"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_fill_line_ids
+msgid "Fill/drain lines"
+msgstr "Цэнэглэлт/Алдагдал-ууд"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_fillings_count
+msgid "Filling count"
+msgstr "Цэнэглэсэн тоо"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_fillings_volume
+msgid "Fillings volume"
+msgstr "Цэнэглэсэн хэмжээ"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_from_loc
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_from_loc_char
+msgid "From"
+msgstr "Эхлэл"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_from_time
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_from_time
+msgid "From time"
+msgstr "Эхэлсэн"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_fuel_consumption
+msgid "Fuel consumption"
+msgstr "Түлш зарцуулалт"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_fuel_fill_report_action
+#: model:ir.ui.menu,name:navixy_gps.gps_fuel_fill_report_menu
+msgid "Fuel fill report"
+msgstr "Цэнэглэлт/Алдагдлын тайлан"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_fuel_report_action
+#: model:ir.ui.menu,name:navixy_gps.gps_fuel_report_menu
+msgid "Fuel report"
+msgstr "Түлшний тайлан"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_fuel_report_line_action
+#: model:ir.ui.menu,name:navixy_gps.gps_fuel_report_line_menu
+msgid "Fuel report lines"
+msgstr "Түлшний мөрүүд"
+
+#. module: navixy_gps
+#: model:ir.ui.menu,name:navixy_gps.gps_config_menu
+#: model:ir.ui.menu,name:navixy_gps.gps_report_menu
+msgid "GPS"
+msgstr "GPS"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_technic_gps_tracker_id
+msgid "GPS tracker ID"
+msgstr "GPS tracker ID"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_zone_action
+#: model:ir.ui.menu,name:navixy_gps.gps_zone_menu
+msgid "GPS zones"
+msgstr "GPS zones"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_idle_string
+msgid "Idle"
+msgstr "Зогссон хугацаа"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_idle_string
+msgid "Idle duration"
+msgstr "Зогссон хугацаа"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_idle_sec
+msgid "Idle duration (sec)"
+msgstr "Зогсолт (сек)"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_idle_sec
+msgid "Idle second"
+msgstr "Зогсолт (сек)"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_ignition_sec
+msgid "Ignition seconds"
+msgstr "Түлхүүр түлхээтэй (сек)"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_ignition_string
+msgid "Ignition string"
+msgstr "Түлхүүр түлхээтэй"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_in_loc
+msgid "In location"
+msgstr "Бүсэд орсон"
+
+#. module: navixy_gps
+#: selection:gps.fuel.report,state:0
+#: selection:gps.report,state:0
+#: selection:gps.stop.report,state:0
+#: selection:gps.trip.report,state:0
+#: selection:gps.zone.report,state:0
+msgid "In process"
+msgstr "Хүлээгдэж буй"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_in_datetime
+msgid "In time"
+msgstr "Орсон цаг"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_report___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report___last_update
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line___last_update
+msgid "Last Modified on"
+msgstr "Сүүлийн засвар хийсэн огноо"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_write_uid
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_write_uid
+msgid "Last Updated by"
+msgstr "Сүүлийн засвар хийсэн"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_write_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_write_date
+msgid "Last Updated on"
+msgstr "Сүүлийн засвар хийсэн огноо"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_length
+msgid "Length"
+msgstr "Зай км"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_line_datetime
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_line_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_line_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_line_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_line_date
+msgid "Line date"
+msgstr "Огноо"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_location_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_location_id
+msgid "Location"
+msgstr "Бүс"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_max_speed
+msgid "Max speed"
+msgstr "Дээд хурд"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_mileage
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_mileage
+msgid "Mileage"
+msgstr "Туулсан км"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_navixy_id
+msgid "Navixy ID"
+msgstr "Navixy ID"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_nav_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_report_nav_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_nav_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_nav_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_nav_report_id
+msgid "Navixy report ID"
+msgstr "Navixy report ID"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_out_loc
+msgid "Out location"
+msgstr "Бүсээс гарсан"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_out_datetime
+msgid "Out time"
+msgstr "Гарсан цаг"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_report_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_report_id
+msgid "Report id"
+msgstr "Report id"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_ids
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_ids
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_ids
+msgid "Report lines"
+msgstr "Тайлангийн мөрүүд"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_start_bal
+msgid "Start balance"
+msgstr "Эхний үлдэгдэл"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_start_vol
+msgid "Start volume"
+msgstr "Эхний үлдэгдэл"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_state
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_report_state
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_state
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_state
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_state
+msgid "State"
+msgstr "Төлөв"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_stop_report_action
+#: model:ir.ui.menu,name:navixy_gps.gps_stop_report_menu
+msgid "Stop report"
+msgstr "Зогсолтын тайлан"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_stop_report_line_action
+#: model:ir.ui.menu,name:navixy_gps.gps_stop_report_line_menu
+msgid "Stop report lines"
+msgstr "Зогсолтын мөрүүд"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.gps_stop_report_form
+msgid "Stops"
+msgstr "Зогсолтууд"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_technic
+msgid "Technic"
+msgstr "Техник"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_technic_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_technic_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_technic_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_technic_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_technic_id
+msgid "Technic id"
+msgstr "Техник"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_time_string
+msgid "Time"
+msgstr "Зорчсон хугацаа"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_time_sec
+msgid "Time seconds"
+msgstr "Зорчсон хугацаа (сек)"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_to_loc
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_to_loc_char
+msgid "To"
+msgstr "Төгсгөл"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_to_time
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_to_time
+msgid "To time"
+msgstr "Төгссөн цаг"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_trip_report_action
+#: model:ir.ui.menu,name:navixy_gps.gps_trip_report_menu
+msgid "Trip report"
+msgstr "Зорчилтын тайлан"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_trip_report_line_action
+#: model:ir.ui.menu,name:navixy_gps.gps_trip_report_line_menu
+msgid "Trip report lines"
+msgstr "Зорчилтын мөрүүд"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.gps_trip_report_form
+msgid "Trips"
+msgstr "Зорчилт"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_volume
+msgid "Volume"
+msgstr "Хэмжээ Л"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_loc
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_loc_char
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_name
+msgid "Zone"
+msgstr "Бүс"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.gps_zone_report_form
+msgid "Zone entries/exits"
+msgstr "Бүсэд орсон/гарсан"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_zone_report_action
+#: model:ir.ui.menu,name:navixy_gps.gps_zone_report_menu
+msgid "Zone report"
+msgstr "Бүсийн тайлан"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_zone_report_line_action
+#: model:ir.ui.menu,name:navixy_gps.gps_zone_report_line_menu
+msgid "Zone report lines"
+msgstr "Бүсэд зорчсон мөрүүд"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_fuel_fill_report
+msgid "gps.fuel.fill.report"
+msgstr "gps.fuel.fill.report"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_fuel_report
+msgid "gps.fuel.report"
+msgstr "gps.fuel.report"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_fuel_report_line
+msgid "gps.fuel.report.line"
+msgstr "gps.fuel.report.line"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_report
+msgid "gps.report"
+msgstr "gps.report"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_stop_report
+msgid "gps.stop.report"
+msgstr "gps.stop.report"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_stop_report_line
+msgid "gps.stop.report.line"
+msgstr "gps.stop.report.line"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_trip_report
+msgid "gps.trip.report"
+msgstr "gps.trip.report"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_trip_report_line
+msgid "gps.trip.report.line"
+msgstr "gps.trip.report.line"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_zone
+msgid "gps.zone"
+msgstr "gps.zone"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_zone_report
+msgid "gps.zone.report"
+msgstr "gps.zone.report"
+
+#. module: navixy_gps
+#: model:ir.model,name:navixy_gps.model_gps_zone_report_line
+msgid "gps.zone.report.line"
+msgstr "gps.zone.report.line"
+
