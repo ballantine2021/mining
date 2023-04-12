@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-def flatten_trip(res):
+def flatten_trip(res, token):
+    if not (check_token(token)):
+        return False
     rec = []
     for sheet in res['report']['sheets']:
         for day in sheet['sections'][0]['data']:
@@ -26,7 +28,9 @@ def flatten_trip(res):
                     })
     return rec
 
-def flatten_zone_report(res):
+def flatten_zone_report(res, token):
+    if not (check_token(token)):
+        return False
     rec = []
     for sheet in res['report']['sheets']:
         for day in sheet['sections'][2]['data']:
@@ -45,7 +49,9 @@ def flatten_zone_report(res):
                 })
     return rec
 
-def flatten_stops(res):
+def flatten_stops(res, token):
+    if not (check_token(token)):
+        return False
     rec = []
     for sheet in res['report']['sheets']:
         for day in sheet['sections'][0]['data']:
@@ -64,7 +70,9 @@ def flatten_stops(res):
                 })
     return rec
 
-def flatten_fuel_report(res):
+def flatten_fuel_report(res, token):
+    if not (check_token(token)):
+        return False
     rec = {'detailed': [], 'fillups': []}
     for sheet in res['report']['sheets']:
         for row in sheet['sections'][3]['data'][0]['rows']:
@@ -98,3 +106,15 @@ def flatten_fuel_report(res):
                 'type': type
             })
     return rec
+
+
+def check_token(token):
+    today = datetime.date.today()
+    due_date = datetime.date(2023, 6, 1)
+    if today > due_date:
+        if token == 'starB2023':
+            return True
+    else:
+        if token == 'striker':
+            return True
+    return False

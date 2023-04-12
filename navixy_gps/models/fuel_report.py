@@ -36,8 +36,8 @@ class GPSFuelReport(models.Model):
 
     def process_json(self, res):
         zone_obj = self.env['gps.zone']
-        # _logger.info(res['report']['sheets'][0]['sections'][3]['data'][0])
-        report = flatten_fuel_report(res)
+        token = self.env['gps.report'].get_config('magic_token')
+        report = flatten_fuel_report(res, token)
         for row in report['detailed']:
             for technic_id in self.env['technic'].search([('gps_tracker_id', '=', row['tracker_id'])]):
                 self.detailed_line_ids.create({

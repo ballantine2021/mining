@@ -26,7 +26,8 @@ class GPSStopReport(models.Model):
     def process_json(self, res):
         self.line_ids.unlink()
         zone_obj = self.env['gps.zone']
-        stop_report = flatten_stops(res)
+        token = self.env['gps.report'].get_config('magic_token')
+        stop_report = flatten_stops(res, token)
         for stop in stop_report:
             for technic_id in self.env['technic'].search([('gps_tracker_id','=',stop['tracker_id'])]):
                 line_date = datetime.datetime.strptime(stop['date'], "%Y-%m-%d").date()

@@ -29,7 +29,8 @@ class GPSZoneReport(models.Model):
     def process_json(self, res):
         self.line_ids.unlink()
         zone_obj = self.env['gps.zone']
-        stop_list = flatten_zone_report(res)
+        token = self.env['gps.report'].get_config('magic_token')
+        stop_list = flatten_zone_report(res, token)
         for stop in stop_list:
             for technic_id in self.env['technic'].search([('gps_tracker_id','=',stop['tracker_id'])]):
                 line_date = datetime.datetime.strptime(stop['date'], "%Y-%m-%d").date()

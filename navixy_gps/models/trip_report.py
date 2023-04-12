@@ -30,7 +30,8 @@ class GPSTripReport(models.Model):
     def process_json(self, res):
         self.line_ids.unlink()
         zone_obj = self.env['gps.zone']
-        trip_list = flatten_trip(res)
+        token = self.env['gps.report'].get_config('magic_token')
+        trip_list = flatten_trip(res, token)
         for trip in trip_list:
             for technic_id in self.env['technic'].search([('gps_tracker_id','=',trip['tracker_id'])]):
                 self.line_ids.create({
