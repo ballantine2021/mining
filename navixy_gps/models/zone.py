@@ -3,7 +3,7 @@ from odoo import models, fields, api
 import logging
 import requests, re
 from odoo.exceptions import UserError
-from gps_report import HEADERS, API_HASH, NAVIXY_URL
+from gps_report import HEADERS
 _logger = logging.getLogger(__name__)
 
 class GPSZone(models.Model):
@@ -13,10 +13,11 @@ class GPSZone(models.Model):
     navixy_id = fields.Integer('Navixy ID')
 
     def _pull_data(self):
+        gps_obj = self.env['gps.report']
         req = {
-            'hash': API_HASH,
+            'hash': gps_obj.get_config('navixy_hash'),
         }
-        r = requests.post(url=NAVIXY_URL + 'zone/list', headers=HEADERS, json=req)
+        r = requests.post(url=gps_obj.get_config('navixy_url') + 'zone/list', headers=HEADERS, json=req)
         if r.status_code == 200:
             for zone in r.json()['list']:
                 rec = self.search([('navixy_id','=',zone['id'])])
