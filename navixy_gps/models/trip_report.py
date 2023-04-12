@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, _
+from magic import flatten_trip
 import logging
 import datetime
 from gps_report import parse_datetime
@@ -29,32 +30,28 @@ class GPSTripReport(models.Model):
     def process_json(self, res):
         self.line_ids.unlink()
         zone_obj = self.env['gps.zone']
-        for sheet in res['report']['sheets']:
-            for technic_id in self.env['technic'].search([('gps_tracker_id','=',sheet['entity_ids'][0])]):
-                for day in sheet['sections'][0]['data']:
-                    for row in day['rows']:
-                        if row['length']['raw'] > 0:
-                            date_char = day['header'].split('(')[0].strip()
-                            line_date = datetime.datetime.strptime(date_char, "%Y-%m-%d").date()
-                            self.line_ids.create({
-                                'report_id':    self.id,
-                                'technic_id':   technic_id.id,
-                                'line_date':    line_date,
-                                'from_loc_char' : row['from']['v'],
-                                'to_loc_char'   :row['to']['v'],
-                                'from_loc':     zone_obj.parse_text(row['from']['v']),
-                                'to_loc':       zone_obj.parse_text(row['to']['v']),
-                                'from_time':    parse_datetime(date_char,row['from']['v']),
-                                'to_time':      parse_datetime(date_char,row['to']['v']),
-                                'length':       row['length']['v'],
-                                'time_sec':     row['time']['raw'],
-                                'time_string':  row['time']['v'],
-                                'avg_speed':    row['avg_speed']['v'],
-                                'max_speed':    row['max_speed']['v'],
-                                'idle_sec':     row['idle_duration']['raw'],
-                                'idle_string':  row['idle_duration']['v'],
-                                'fuel_consumption': row['sensor_61560']['raw']
-                            })
+        trip_list = flatten_trip(res)
+        for trip in trip_list:
+            for technic_id in self.env['technic'].search([('gps_tracker_id','=',trip['tracker_id'])]):
+                self.line_ids.create({
+                    'report_id':    self.id,
+                    'technic_id':   technic_id.id,
+                    'line_date':    trip['line_date'],
+                    'from_loc_char':trip['from'],
+                    'to_loc_char'  :trip['to'],
+                    'from_loc':     zone_obj.parse_text(trip['from']),
+                    'to_loc':       zone_obj.parse_text(trip['to']),
+                    'from_time':    parse_datetime(trip['date_char'],trip['from']),
+                    'to_time':      parse_datetime(trip['date_char'],trip['to']),
+                    'length':       trip['length'],
+                    'time_sec':     trip['time_sec'],
+                    'time_string':  trip['time_string'],
+                    'avg_speed':    trip['avg_speed'],
+                    'max_speed':    trip['max_speed'],
+                    'idle_sec':     trip['idle_sec'],
+                    'idle_string':  trip['idle_string'],
+                    'fuel_consumption': trip['fuel_consumption']
+                })
         return
 
 
