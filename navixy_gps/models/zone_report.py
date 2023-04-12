@@ -3,6 +3,7 @@
 from odoo import models, fields, api, _
 import logging
 import datetime
+from magic import flatten_zone_report
 from gps_report import parse_datetime
 from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
@@ -28,25 +29,23 @@ class GPSZoneReport(models.Model):
     def process_json(self, res):
         self.line_ids.unlink()
         zone_obj = self.env['gps.zone']
-        for sheet in res['report']['sheets']:
-            for technic_id in self.env['technic'].search([('gps_tracker_id','=',sheet['entity_ids'][0])]):
-                for day in sheet['sections'][2]['data']:
-                    for row in day['rows']:
-                        date_char = day['header'].split('(')[0].strip()
-                        line_date = datetime.datetime.strptime(date_char, "%Y-%m-%d").date()
-                        for zone_id in zone_obj.search([('navixy_id','=',row['zone_name']['raw'])]):
-                            self.line_ids.create({
-                                'report_id':    self.id,
-                                'technic_id':   technic_id.id,
-                                'line_date':    line_date,
-                                'location_id':  zone_id.id,
-                                'in_datetime':  parse_datetime(date_char,row['in_time']['v']),
-                                'out_datetime': parse_datetime(date_char,row['out_time']['v']),
-                                'in_loc':      self.get_zone_id(row['in_address']['v']),
-                                'out_loc':      self.get_zone_id(row['out_address']['v']),
-                                'duration_sec': row['duration']['raw'],
-                                'duration_string': row['duration']['v'],
-                            })
+        stop_list = flatten_zone_report(res)
+        for stop in stop_list:
+            for technic_id in self.env['technic'].search([('gps_tracker_id','=',stop['tracker_id'])]):
+                line_date = datetime.datetime.strptime(stop['date'], "%Y-%m-%d").date()
+                for zone_id in zone_obj.search([('navixy_id','=',stop['location'])]):
+                    self.line_ids.create({
+                        'report_id':    self.id,
+                        'technic_id':   technic_id.id,
+                        'line_date':    line_date,
+                        'location_id':  zone_id.id,
+                        'in_datetime':  parse_datetime(stop['date'],stop['in_time']),
+                        'out_datetime': parse_datetime(stop['date'],stop['out_time']),
+                        'in_loc':      self.get_zone_id(stop['in_address']),
+                        'out_loc':      self.get_zone_id(stop['out_address']),
+                        'duration_sec': stop['duration_sec'],
+                        'duration_string': stop['duration_string'],
+                    })
         return
 
     def get_zone_id(self, address):

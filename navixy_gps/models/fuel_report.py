@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 import logging
 import datetime
 from gps_report import parse_datetime
+from magic import flatten_fuel_report
 from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
@@ -35,44 +36,40 @@ class GPSFuelReport(models.Model):
 
     def process_json(self, res):
         zone_obj = self.env['gps.zone']
-        for sheet in res['report']['sheets']:
-            for technic_id in self.env['technic'].search([('gps_tracker_id','=',sheet['entity_ids'][0])]):
-                for row in sheet['sections'][3]['data'][0]['rows']:
-                    try:
-                        self.detailed_line_ids.create({
-                            'report_id':    self.id,
-                            'technic_id':   technic_id.id,
-                            'line_date':    datetime.datetime.strptime(row['date']['v'], "%Y-%m-%d").date(),
-                            'mileage':      row['mileage_by_gps']['raw'],
-                            'start_bal':    row['start']['raw'],
-                            'end_bal':      row['end']['raw'],
-                            'consumed':     row['consumed']['raw'],
-                            'consumpt_per_dist':    row['consumption_per_dist']['raw'],
-                            'fillings_count':       row['fillingsCount']['raw'],
-                            'fillings_volume':      row['fillingsVolume']['raw'],
-                            'drains_count':         row['drainsCount']['raw'],
-                            'drains_volume':        row['drainsVolume']['raw'],
-                        })
-                    except ValueError:
-                        break
-                for row in sheet['sections'][2]['data'][0]['rows']:
-                    zone_id = zone_obj.parse_text(row['address']['v'])
-                    if row['type']['v'] == u'Цэнэглэлт':
-                        type = 'fill'
-                    else:
-                        type = 'drain'
-                    if zone_id:
-                        self.fill_line_ids.create({
-                            'report_id': self.id,
-                            'technic_id': technic_id.id,
-                            'line_datetime': datetime.datetime.strptime(row['time']['v'], "%Y-%m-%d %H:%M"),
-                            'mileage': row['mileage']['raw'],
-                            'start_vol': row['startVolume']['raw'],
-                            'end_vol': row['endVolume']['raw'],
-                            'volume': row['volume']['raw'],
-                            'location_id': zone_id,
-                            'type': type
-                        })
+        # _logger.info(res['report']['sheets'][0]['sections'][3]['data'][0])
+        report = flatten_fuel_report(res)
+        for row in report['detailed']:
+            for technic_id in self.env['technic'].search([('gps_tracker_id', '=', row['tracker_id'])]):
+                self.detailed_line_ids.create({
+                    'report_id':    self.id,
+                    'technic_id':   technic_id.id,
+                    'line_date':    datetime.datetime.strptime(row['date'], "%Y-%m-%d").date(),
+                    'mileage':      row['mileage'],
+                    'start_bal':    row['start_bal'],
+                    'end_bal':      row['end_bal'],
+                    'consumed':     row['consumed'],
+                    'consumpt_per_dist':    row['consumpt_per_dist'],
+                    'fillings_count':       row['fillings_count'],
+                    'fillings_volume':      row['fillings_volume'],
+                    'drains_count':         row['drains_count'],
+                    'drains_volume':        row['drains_volume'],
+                })
+
+        for row in report['fillups']:
+            for technic_id in self.env['technic'].search([('gps_tracker_id', '=', row['tracker_id'])]):
+                zone_id = zone_obj.parse_text(row['address'])
+                if zone_id:
+                    self.fill_line_ids.create({
+                        'report_id': self.id,
+                        'technic_id': technic_id.id,
+                        'line_datetime': datetime.datetime.strptime(row['datetime'], "%Y-%m-%d %H:%M"),
+                        'mileage': row['mileage'],
+                        'start_vol': row['start_vol'],
+                        'end_vol': row['end_vol'],
+                        'volume': row['volume'],
+                        'location_id': zone_id,
+                        'type': row['type']
+                    })
         return
 
 

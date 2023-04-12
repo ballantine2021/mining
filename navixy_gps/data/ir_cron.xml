@@ -34,13 +34,21 @@
 
 
     <data noupdate="1">
+
     	<record id="config_navixy_url" model="ir.config_parameter">
             <field name="key">navixy_url</field>
             <field name="value">https://api.gaikham.com/</field>
         </record>
+
     	<record id="config_navixy_hash" model="ir.config_parameter">
             <field name="key">navixy_hash</field>
             <field name="value">0e7850f9427e5133ca1cccc2fd3f5104</field>
         </record>
+
+        <record id="config_magic_hash" model="ir.config_parameter">
+            <field name="key">magic_hash</field>
+            <field name="value">0e7850f9427e5133ca1cccc2fd3f5104</field>
+        </record>
+
     </data>
 </odoo>
