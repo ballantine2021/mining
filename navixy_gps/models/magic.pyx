@@ -5,10 +5,16 @@ def flatten_trip(res, token):
     if not (check_token(token)):
         return False
     rec = []
+    if len(res['report']['sheets']) >= 3:
+        res['report']['sheets'].pop(0)
     for sheet in res['report']['sheets']:
         for day in sheet['sections'][0]['data']:
             for row in day['rows']:
                 if row['length']['raw'] > 0:
+                    fuel = 0
+                    for k, v in row.items():
+                        if k.startswith('sensor'):
+                            fuel = v['raw']
                     date_char = day['header'].split('(')[0].strip()
                     line_date = datetime.datetime.strptime(date_char, "%Y-%m-%d").date()
                     rec.append({
@@ -24,7 +30,7 @@ def flatten_trip(res, token):
                         'max_speed': row['max_speed']['v'],
                         'idle_sec': row['idle_duration']['raw'],
                         'idle_string': row['idle_duration']['v'],
-                        'fuel_consumption': row['sensor_61560']['raw']
+                        'fuel_consumption': fuel
                     })
     return rec
 
@@ -74,37 +80,42 @@ def flatten_fuel_report(res, token):
     if not (check_token(token)):
         return False
     rec = {'detailed': [], 'fillups': []}
+    if len(res['report']['sheets']) >= 3: 
+        res['report']['sheets'].pop(0)
     for sheet in res['report']['sheets']:
-        for row in sheet['sections'][3]['data'][0]['rows']:
-            rec['detailed'].append({
-                'tracker_id': sheet['entity_ids'][0],
-                'date': row['date']['v'],
-                'mileage': row['mileage_by_gps']['raw'],
-                'start_bal': row['start']['raw'],
-                'end_bal': row['end']['raw'],
-                'consumed': row['consumed']['raw'],
-                'consumpt_per_dist': row['consumption_per_dist']['raw'],
-                'fillings_count': row['fillingsCount']['raw'],
-                'fillings_volume': row['fillingsVolume']['raw'],
-                'drains_count': row['drainsCount']['raw'],
-                'drains_volume': row['drainsVolume']['raw'],
-            })
-        rec['detailed'].pop()
-        for row in sheet['sections'][2]['data'][0]['rows']:
-            if row['type']['v'] == u'Цэнэглэлт':
-                type = 'fill'
-            else:
-                type = 'drain'
-            rec['fillups'].append({
-                'tracker_id': sheet['entity_ids'][0],
-                'datetime': row['time']['v'],
-                'mileage': row['mileage']['raw'],
-                'start_vol': row['startVolume']['raw'],
-                'end_vol': row['endVolume']['raw'],
-                'volume': row['volume']['raw'],
-                'address': row['address']['v'],
-                'type': type
-            })
+        if len(sheet['sections'])>2:
+            if sheet['sections'][3].has_key('data'):
+                for row in sheet['sections'][3]['data'][0]['rows']:
+                    rec['detailed'].append({
+                        'tracker_id': sheet['entity_ids'][0],
+                        'date': row['date']['v'],
+                        'mileage': row['mileage_by_gps']['raw'],
+                        'start_bal': row['start']['raw'],
+                        'end_bal': row['end']['raw'],
+                        'consumed': row['consumed']['raw'],
+                        'consumpt_per_dist': row['consumption_per_dist']['raw'],
+                        'fillings_count': row['fillingsCount']['raw'],
+                        'fillings_volume': row['fillingsVolume']['raw'],
+                        'drains_count': row['drainsCount']['raw'],
+                        'drains_volume': row['drainsVolume']['raw'],
+                    })
+                rec['detailed'].pop()
+            if len(sheet['sections'][2]['data'])>0:
+                for row in sheet['sections'][2]['data'][0]['rows']:
+                    if row['type']['v'] == u'Цэнэглэлт':
+                        type = 'fill'
+                    else:
+                        type = 'drain'
+                    rec['fillups'].append({
+                        'tracker_id': sheet['entity_ids'][0],
+                        'datetime': row['time']['v'],
+                        'mileage': row['mileage']['raw'],
+                        'start_vol': row['startVolume']['raw'],
+                        'end_vol': row['endVolume']['raw'],
+                        'volume': row['volume']['raw'],
+                        'address': row['address']['v'],
+                        'type': type
+                    })
     return rec
 
 
