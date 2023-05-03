@@ -18,6 +18,20 @@ class GPSReport(models.AbstractModel):
     def generate_reports(self):
         for report_model in GPS_MODELS:
             self.create_report(report_model)
+            # self.check_report()
+
+    def get_tracker_ids(self):
+        req = {
+            'hash': self.get_config('navixy_hash'),
+        }
+        r = requests.post(url=self.get_config('navixy_url')+'/tracker/list', headers=HEADERS, json=req)
+        if r.status_code == 200:
+            dict_list = r.json()['list']
+            tracker_list = [rec['id'] for rec in dict_list if not rec['source']['blocked']]
+            odoo_records = [rec.gps_tracker_id for rec in self.env['technic'].search([])]
+            return list(set(tracker_list) & set(odoo_records))
+        else:
+            return False
 
 
     def create_report(self, report_model):
@@ -28,11 +42,10 @@ class GPSReport(models.AbstractModel):
         start_time = datetime.datetime.combine(yesterday, datetime.time.min)
         # Get the end time for yesterday
         end_time = datetime.datetime.combine(yesterday, datetime.time.max)
-        technic_ids = self.env['technic'].search([('gps_tracker_id','!=',False)])
 
         req = {
             'hash': self.get_config('navixy_hash'),
-            'trackers': [t.gps_tracker_id for t in technic_ids],
+            'trackers': self.get_tracker_ids(),
             'from': start_time.strftime('%Y-%m-%d %H:%M:%S'),
             'to': end_time.strftime('%Y-%m-%d %H:%M:%S'),
             'time_filter': {"from": "00:00:00",

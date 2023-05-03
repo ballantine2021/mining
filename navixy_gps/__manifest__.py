@@ -2,8 +2,9 @@
     'name': "Navixy GPS",
     'version': '1.0',
     'depends': [
-        'l10n_mn_technic'
+        'l10n_mn_technic', 'stock',
     ],
+
     'author': "Tsengel",
     'category': 'Hidden',
     'description': """
@@ -15,6 +16,7 @@
         'views/stop_report_views.xml',
         'views/zone_report_views.xml',
         'views/fuel_report_views.xml',
+        'report/fuel_report_analyze_view.xml',
         'data/ir_cron.xml',
         'security/ir.model.access.csv'
     ],

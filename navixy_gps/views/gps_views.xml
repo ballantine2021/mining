@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <record id="gps_zone_tree" model="ir.ui.view">
+        <field name="name">gps.zone.tree</field>
+        <field name="model">gps.zone</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="navixy_id"/>
+            <field name="product_id"/>
+          </tree>
+        </field>
+		</record>
+
+    <record id="gps_zone_form" model="ir.ui.view">
+      <field name="name">gps.zone.form</field>
+      <field name="model">gps.zone</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <group>
+              <field name="name" readonly="1"/>
+              <field name="navixy_id" readonly="1"/>
+              <field name="product_id"/>
+            </group>
+          </group>
+        </form>
+      </field>
+    </record>
+
     <record id="technic_gps_zone_action" model="ir.actions.act_window">
         <field name="name">GPS zones</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">gps.zone</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">tree,form</field>
     </record>
+
+    <record id="gps_zone_tree" model="ir.ui.view">
+        <field name="name">gps.zone.tree</field>
+        <field name="model">gps.zone</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="navixy_id"/>
+            <field name="product_id"/>
+          </tree>
+        </field>
+		</record>
 
     <menuitem name="GPS" id="gps_report_menu"
               parent="l10n_mn_technic.technic_report_menu"

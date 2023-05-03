@@ -46,6 +46,10 @@ class GPSZoneReport(models.Model):
                         'out_loc':      self.get_zone_id(stop['out_address']),
                         'duration_sec': stop['duration_sec'],
                         'duration_string': stop['duration_string'],
+                        'duration_hour':     float(stop['duration_sec'])/3600 if stop['duration_sec'] is not None and float(stop['duration_sec']) != 0 else 0,
+                        'product_id': zone_id.product_id.id,
+                        'technic_model_id':   technic_id.technic_model_id.id,
+                        'ownership_type':   technic_id.ownership_type,                        
                     })
         return
 
@@ -70,3 +74,10 @@ class GPSZoneReportLines(models.Model):
     out_datetime   = fields.Datetime('Out time')
     duration_sec        = fields.Float('Duration /sec/')
     duration_string     = fields.Char('Duration')
+    duration_hour        = fields.Float('Duration hour')
+    product_id = fields.Many2one('product.template','Zone type', ondelete='restrict')
+    technic_model_id  = fields.Many2one('technic.model', ondelete='restrict')
+    ownership_type = fields.Selection([('own', 'Own'),
+                                    ('leasing', 'Leasing'),
+                                    ('partner', 'Partner'),
+                                    ('rental', 'Rental')], 'Ownership type')

@@ -11,6 +11,7 @@ class GPSZone(models.Model):
 
     name = fields.Char('Zone')
     navixy_id = fields.Integer('Navixy ID')
+    product_id = fields.Many2one('product.template','Zone type')
 
     def _pull_data(self):
         gps_obj = self.env['gps.report']
@@ -28,7 +29,6 @@ class GPSZone(models.Model):
                     })
         else:
             raise UserError(_('Connection error!'))
-        # _logger.info(r.json())
         return
 
     def parse_text(self, txt):

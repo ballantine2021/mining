@@ -5,33 +5,32 @@ def flatten_trip(res, token):
     if not (check_token(token)):
         return False
     rec = []
-    if len(res['report']['sheets']) >= 3:
-        res['report']['sheets'].pop(0)
     for sheet in res['report']['sheets']:
-        for day in sheet['sections'][0]['data']:
-            for row in day['rows']:
-                if row['length']['raw'] > 0:
-                    fuel = 0
-                    for k, v in row.items():
-                        if k.startswith('sensor'):
-                            fuel = v['raw']
-                    date_char = day['header'].split('(')[0].strip()
-                    line_date = datetime.datetime.strptime(date_char, "%Y-%m-%d").date()
-                    rec.append({
-                        'tracker_id': sheet['entity_ids'][0],
-                        'line_date': line_date,
-                        'date_char': date_char,
-                        'from': row['from']['v'],
-                        'to': row['to']['v'],
-                        'length': row['length']['v'],
-                        'time_sec': row['time']['raw'],
-                        'time_string': row['time']['v'],
-                        'avg_speed': row['avg_speed']['v'],
-                        'max_speed': row['max_speed']['v'],
-                        'idle_sec': row['idle_duration']['raw'],
-                        'idle_string': row['idle_duration']['v'],
-                        'fuel_consumption': fuel
-                    })
+        if sheet['entity_ids']:
+            for day in sheet['sections'][0]['data']:
+                for row in day['rows']:
+                    if row['length']['raw'] > 0:
+                        fuel = 0
+                        for k, v in row.items():
+                            if k.startswith('sensor'):
+                                fuel = v['raw']
+                        date_char = day['header'].split('(')[0].strip()
+                        line_date = datetime.datetime.strptime(date_char, "%Y-%m-%d").date()
+                        rec.append({
+                            'tracker_id': sheet['entity_ids'][0],
+                            'line_date': line_date,
+                            'date_char': date_char,
+                            'from': row['from']['v'],
+                            'to': row['to']['v'],
+                            'length': row['length']['v'],
+                            'time_sec': row['time']['raw'],
+                            'time_string': row['time']['v'],
+                            'avg_speed': row['avg_speed']['v'],
+                            'max_speed': row['max_speed']['v'],
+                            'idle_sec': row['idle_duration']['raw'],
+                            'idle_string': row['idle_duration']['v'],
+                            'fuel_consumption': fuel
+                        })
     return rec
 
 def flatten_zone_report(res, token):
@@ -39,20 +38,21 @@ def flatten_zone_report(res, token):
         return False
     rec = []
     for sheet in res['report']['sheets']:
-        for day in sheet['sections'][2]['data']:
-            for row in day['rows']:
-                date_char = day['header'].split('(')[0].strip()
-                rec.append({
-                    'tracker_id': sheet['entity_ids'][0],
-                    'date': date_char,
-                    'location': row['zone_name']['raw'],
-                    'in_time':row['in_time']['v'],
-                    'out_time': row['out_time']['v'],
-                    'in_address': row['in_address']['v'],
-                    'out_address': row['out_address']['v'],
-                    'duration_sec': row['duration']['raw'],
-                    'duration_string': row['duration']['v'],
-                })
+        if sheet['entity_ids']:
+            for day in sheet['sections'][2]['data']:
+                for row in day['rows']:
+                    date_char = day['header'].split('(')[0].strip()
+                    rec.append({
+                        'tracker_id': sheet['entity_ids'][0],
+                        'date': date_char,
+                        'location': row['zone_name']['raw'],
+                        'in_time':row['in_time']['v'],
+                        'out_time': row['out_time']['v'],
+                        'in_address': row['in_address']['v'],
+                        'out_address': row['out_address']['v'],
+                        'duration_sec': row['duration']['raw'],
+                        'duration_string': row['duration']['v'],
+                    })
     return rec
 
 def flatten_stops(res, token):

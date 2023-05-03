@@ -106,13 +106,65 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+       <record id="view_technic_gps_fuel_report_line_search" model="ir.ui.view">
+            <field name="name">gps.fuel.report.line.search</field>
+            <field name="model">gps.fuel.report.line</field>
+            <field name="arch" type="xml">
+                <search string="Fuel report lines">
+                    <field name="line_date"/>
+                    <field name="technic_id"/>
+                    <field name="ownership_type"/>
+                    <field name="technic_model_id"/>
+                    <filter name="this_month" string="This Month" domain="[('line_date','like',time.strftime('%%Y-%%m'))]"/>
+                    <filter name="january" string="January" domain="[('line_date','like',time.strftime('%%Y-01'))]"/>
+                    <filter name="february" string="February" domain="[('line_date','like',time.strftime('%%Y-02'))]"/>
+                    <filter name="march" string="March" domain="[('line_date','like',time.strftime('%%Y-03'))]"/>
+                    <filter name="April" string="April" domain="[('line_date','like',time.strftime('%%Y-04'))]"/>
+                    <filter name="may" string="May" domain="[('line_date','like',time.strftime('%%Y-05'))]"/>
+                    <filter name="june" string="June" domain="[('line_date','like',time.strftime('%%Y-06'))]"/>
+                    <filter name="july" string="July" domain="[('line_date','like',time.strftime('%%Y-07'))]"/>
+                    <filter name="august" string="August" domain="[('line_date','like',time.strftime('%%Y-08'))]"/>
+                    <filter name="september" string="September" domain="[('line_date','like',time.strftime('%%Y-09'))]"/>
+                    <filter name="octomber" string="Octomber" domain="[('line_date','like',time.strftime('%%Y-10'))]"/>
+                    <filter name="november" string="November" domain="[('line_date','like',time.strftime('%%Y-11'))]"/>
+                    <filter name="december" string="December" domain="[('line_date','like',time.strftime('%%Y-12'))]"/>
+                    <filter name="year" string="This Year" domain="[('line_date','like',time.strftime('%%Y'))]"/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Ownership" name="ownership" context="{'group_by':'ownership_type'}"/>
+                        <filter string="Date (month)" icon="terp-go-month" context="{'group_by':'line_date:month'}"/>
+                        <filter string="Technic" context="{'group_by':'technic_id'}"/>
+                        <filter string="Technic model" context="{'group_by':'technic_model_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+       <record id="view_technic_gps_fuel_fill_report_line_search" model="ir.ui.view">
+            <field name="name">gps.fuel.fill.report.search</field>
+            <field name="model">gps.fuel.fill.report</field>
+            <field name="arch" type="xml">
+                <search string="Fuel fill report lines">
+                    <field name="technic_id"/>
+                    <field name="ownership_type"/>
+                    <field name="technic_model_id"/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Ownership" name="ownership" context="{'group_by':'ownership_type'}"/>
+                        <filter string="Technic" context="{'group_by':'technic_id'}"/>
+                        <filter string="Technic model" context="{'group_by':'technic_model_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
 
 	<record id="technic_gps_fuel_report_line_action" model="ir.actions.act_window">
         <field name="name">Fuel report lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">gps.fuel.report.line</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_technic_gps_fuel_report_line_search"/>
+        <field name="view_mode">tree,pivot</field>
     </record>
 
 	<record id="technic_gps_fuel_fill_report_action" model="ir.actions.act_window">
@@ -120,7 +172,8 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">gps.fuel.fill.report</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_technic_gps_fuel_fill_report_line_search"/>
+        <field name="view_mode">tree,pivot</field>
     </record>
 
     <menuitem action="technic_gps_fuel_report_action" id="gps_fuel_report_menu"

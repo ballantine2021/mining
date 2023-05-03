@@ -2,7 +2,7 @@
 
 from odoo import models, fields, api, _
 import logging
-import datetime
+from datetime import datetime, timedelta
 from gps_report import parse_datetime
 from magic import flatten_fuel_report
 from odoo.exceptions import UserError
@@ -43,7 +43,7 @@ class GPSFuelReport(models.Model):
                 self.detailed_line_ids.create({
                     'report_id':    self.id,
                     'technic_id':   technic_id.id,
-                    'line_date':    datetime.datetime.strptime(row['date'], "%Y-%m-%d").date(),
+                    'line_date':    datetime.strptime(row['date'], "%Y-%m-%d").date(),
                     'mileage':      row['mileage'],
                     'start_bal':    row['start_bal'],
                     'end_bal':      row['end_bal'],
@@ -53,6 +53,8 @@ class GPSFuelReport(models.Model):
                     'fillings_volume':      row['fillings_volume'],
                     'drains_count':         row['drains_count'],
                     'drains_volume':        row['drains_volume'],
+                    'technic_model_id':   technic_id.technic_model_id.id,
+                    'ownership_type':   technic_id.ownership_type,                       
                 })
 
         for row in report['fillups']:
@@ -62,13 +64,15 @@ class GPSFuelReport(models.Model):
                     self.fill_line_ids.create({
                         'report_id': self.id,
                         'technic_id': technic_id.id,
-                        'line_datetime': datetime.datetime.strptime(row['datetime'], "%Y-%m-%d %H:%M"),
+                        'line_datetime': datetime.strptime(row['datetime'], "%Y-%m-%d %H:%M") - timedelta(hours=8),
                         'mileage': row['mileage'],
                         'start_vol': row['start_vol'],
                         'end_vol': row['end_vol'],
                         'volume': row['volume'],
                         'location_id': zone_id,
-                        'type': row['type']
+                        'type': row['type'],
+                        'technic_model_id':   technic_id.technic_model_id.id,
+                        'ownership_type':   technic_id.ownership_type,                          
                     })
         return
 
@@ -88,6 +92,11 @@ class GPSFuelReportLines(models.Model):
     fillings_volume     = fields.Float('Fillings volume')
     drains_count        = fields.Integer('Drains count')
     drains_volume       = fields.Float('Drains volume')
+    technic_model_id  = fields.Many2one('technic.model', ondelete='restrict')
+    ownership_type = fields.Selection([('own', 'Own'),
+                                    ('leasing', 'Leasing'),
+                                    ('partner', 'Partner'),
+                                    ('rental', 'Rental')], 'Ownership type')    
 
 class GPSFuelFillReport(models.Model):
     _name = 'gps.fuel.fill.report'
@@ -101,3 +110,8 @@ class GPSFuelFillReport(models.Model):
     type        = fields.Selection([('fill','Fill'),('drain','Drain')], 'Fill/drain')
     mileage     = fields.Float('Mileage')
     location_id = fields.Many2one('gps.zone', 'Location', ondelete='restrict')
+    technic_model_id  = fields.Many2one('technic.model', ondelete='restrict')
+    ownership_type = fields.Selection([('own', 'Own'),
+                                    ('leasing', 'Leasing'),
+                                    ('partner', 'Partner'),
+                                    ('rental', 'Rental')], 'Ownership type')    

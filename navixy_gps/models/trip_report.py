@@ -34,6 +34,9 @@ class GPSTripReport(models.Model):
         trip_list = flatten_trip(res, token)
         for trip in trip_list:
             for technic_id in self.env['technic'].search([('gps_tracker_id','=',trip['tracker_id'])]):
+                zone_from = zone_obj.parse_text(trip['from'])
+                zone_to = zone_obj.parse_text(trip['to'])
+
                 self.line_ids.create({
                     'report_id':    self.id,
                     'technic_id':   technic_id.id,
@@ -51,7 +54,13 @@ class GPSTripReport(models.Model):
                     'max_speed':    trip['max_speed'],
                     'idle_sec':     trip['idle_sec'],
                     'idle_string':  trip['idle_string'],
-                    'fuel_consumption': trip['fuel_consumption']
+                    'fuel_consumption': trip['fuel_consumption'],
+                    'from_product': self.env['gps.zone'].search([('id', '=', zone_from)]).product_id.id,
+                    'to_product': self.env['gps.zone'].search([('id', '=', zone_to)]).product_id.id,
+                    'technic_model_id':   technic_id.technic_model_id.id,
+                    'ownership_type':   technic_id.ownership_type,      
+                    'time_hour':     float(trip['time_sec'])/3600 if trip['time_sec'] is not None and float(trip['time_sec']) != 0 else 0,
+                    'idle_hour':  float(trip['idle_sec'])/3600 if trip['idle_sec'] is not None and float(trip['idle_sec']) != 0 else 0,                                  
                 })
         return
 
@@ -76,4 +85,14 @@ class GPSTripReportLines(models.Model):
     fuel_consumption    = fields.Float('Fuel consumption')
     idle_sec            = fields.Float('Idle duration (sec)')
     idle_string         = fields.Char('Idle duration')
+    from_product = fields.Many2one('product.template','From Zone type', ondelete='restrict')
+    to_product = fields.Many2one('product.template','To Zone type', ondelete='restrict')
+    technic_model_id  = fields.Many2one('technic.model', ondelete='restrict')
+    time_hour            = fields.Float('Trip hour')
+    idle_hour            = fields.Float('Idle hour')
+    ownership_type = fields.Selection([('own', 'Own'),
+                                    ('leasing', 'Leasing'),
+                                    ('partner', 'Partner'),
+                                    ('rental', 'Rental')], 'Ownership type')
+
 

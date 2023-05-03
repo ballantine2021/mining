@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0+e-20201201\n"
+"Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-08 06:55+0000\n"
-"PO-Revision-Date: 2023-04-08 06:55+0000\n"
+"POT-Creation-Date: 2023-04-29 14:58+0000\n"
+"PO-Revision-Date: 2023-04-29 14:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,49 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "April"
+msgstr "4-р сар"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "August"
+msgstr "8-р сар"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_avg_speed
 msgid "Average speed"
 msgstr "Дундаж хурд"
 
 #. module: navixy_gps
-#: code:addons/navixy_gps/models/zone.py:29
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_per_km
+msgid "Comsumed per km"
+msgstr "Литр/Км"
+
+#. module: navixy_gps
+#: code:addons/navixy_gps/models/zone.py:31
 #, python-format
 msgid "Connection error!"
 msgstr "Connection error!"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_consumed
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_consumed
 msgid "Consumed"
 msgstr "Зарцуулалт Л"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_per_hour
+msgid "Consumed per hour"
+msgstr "Литр/мотоцаг"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_consumpt_per_dist
@@ -74,6 +103,24 @@ msgid "Date"
 msgstr "Огноо"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "Date (month)"
+msgstr "Огноо (сар)"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "December"
+msgstr "12-р сар"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_detailed_line_ids
 msgid "Detailed lines"
 msgstr "Хугацааны дэлгэрэнгүй"
@@ -84,6 +131,7 @@ msgid "Detailed report"
 msgstr "Дэлгэрэнгүй"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_display_name
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_display_name
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_display_name
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_display_name
@@ -133,6 +181,11 @@ msgid "Duration /sec/"
 msgstr "Хугацаа /сек/"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_duration_hour
+msgid "Duration hour"
+msgstr "Үргэлжилсэн цаг"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_end_bal
 msgid "End balance"
 msgstr "Эцсийн үлдэгдэл"
@@ -150,6 +203,15 @@ msgstr "Эцсийн үлдэгдэл"
 #: selection:gps.zone.report,state:0
 msgid "Fail"
 msgstr "Алдаа"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "February"
+msgstr "2-р сар"
 
 #. module: navixy_gps
 #: selection:gps.fuel.fill.report,type:0
@@ -173,6 +235,7 @@ msgid "Filling count"
 msgstr "Цэнэглэсэн тоо"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_fillings_volume
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_fillings_volume
 msgid "Fillings volume"
 msgstr "Цэнэглэсэн хэмжээ"
@@ -184,10 +247,20 @@ msgid "From"
 msgstr "Эхлэл"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_from_product
+msgid "From Zone type"
+msgstr "Гарсан бүс төрөл"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_from_time
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_from_time
 msgid "From time"
 msgstr "Эхэлсэн"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+msgid "Fuel analyze report"
+msgstr "Түлшний шинжилгээ"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_fuel_consumption
@@ -201,14 +274,27 @@ msgid "Fuel fill report"
 msgstr "Цэнэглэлт/Алдагдлын тайлан"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_fill_report_line_search
+msgid "Fuel fill report lines"
+msgstr "Түлшний цэнглэлт алдагдал тайлан"
+
+#. module: navixy_gps
 #: model:ir.actions.act_window,name:navixy_gps.technic_gps_fuel_report_action
 #: model:ir.ui.menu,name:navixy_gps.gps_fuel_report_menu
 msgid "Fuel report"
 msgstr "Түлшний тайлан"
 
 #. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.action_fuel_report_analyze_tree
+#: model:ir.model,name:navixy_gps.model_fuel_report_analyze
+#: model:ir.ui.menu,name:navixy_gps.fuel_analyze_report_menu
+msgid "Fuel report analyze"
+msgstr "Түлшний шинжилгээ"
+
+#. module: navixy_gps
 #: model:ir.actions.act_window,name:navixy_gps.technic_gps_fuel_report_line_action
 #: model:ir.ui.menu,name:navixy_gps.gps_fuel_report_line_menu
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
 msgid "Fuel report lines"
 msgstr "Түлшний мөрүүд"
 
@@ -227,9 +313,20 @@ msgstr "GPS tracker ID"
 #: model:ir.actions.act_window,name:navixy_gps.technic_gps_zone_action
 #: model:ir.ui.menu,name:navixy_gps.gps_zone_menu
 msgid "GPS zones"
-msgstr "GPS zones"
+msgstr "GPS бүс"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_fill_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "Group By..."
+msgstr "Бүлэглэх..."
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_id
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_id
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_id
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_id
@@ -260,9 +357,20 @@ msgid "Idle duration (sec)"
 msgstr "Зогсолт (сек)"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_idle_hour
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_idle_hour
+msgid "Idle hour"
+msgstr "Сул зогссон цаг"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_idle_sec
 msgid "Idle second"
 msgstr "Зогсолт (сек)"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_ignition_hour
+msgid "Ignition hour"
+msgstr "Түлхүүртэй сул зогссон цаг"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_ignition_sec
@@ -294,6 +402,39 @@ msgid "In time"
 msgstr "Орсон цаг"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "January"
+msgstr "1-р сар"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "July"
+msgstr "7-р сар"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "June"
+msgstr "6-р сар"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_mileage
+msgid "Km"
+msgstr "Км"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze___last_update
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report___last_update
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report___last_update
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line___last_update
@@ -337,11 +478,22 @@ msgid "Last Updated on"
 msgstr "Сүүлийн засвар хийсэн огноо"
 
 #. module: navixy_gps
+#: selection:fuel.report.analyze,ownership_type:0
+#: selection:gps.fuel.fill.report,ownership_type:0
+#: selection:gps.fuel.report.line,ownership_type:0
+#: selection:gps.stop.report.line,ownership_type:0
+#: selection:gps.trip.report.line,ownership_type:0
+#: selection:gps.zone.report.line,ownership_type:0
+msgid "Leasing"
+msgstr "Түрээс"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_length
 msgid "Length"
 msgstr "Зай км"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_line_date
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_line_datetime
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_line_date
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_line_date
@@ -357,9 +509,27 @@ msgid "Location"
 msgstr "Бүс"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "March"
+msgstr "3-р сар"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_max_speed
 msgid "Max speed"
 msgstr "Дээд хурд"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "May"
+msgstr "5-р сар"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_mileage
@@ -382,6 +552,24 @@ msgid "Navixy report ID"
 msgstr "Navixy report ID"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "November"
+msgstr "11-р сар"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "Octomber"
+msgstr "10-р сар"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_out_loc
 msgid "Out location"
 msgstr "Бүсээс гарсан"
@@ -390,6 +578,61 @@ msgstr "Бүсээс гарсан"
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_out_datetime
 msgid "Out time"
 msgstr "Гарсан цаг"
+
+#. module: navixy_gps
+#: selection:fuel.report.analyze,ownership_type:0
+#: selection:gps.fuel.fill.report,ownership_type:0
+#: selection:gps.fuel.report.line,ownership_type:0
+#: selection:gps.stop.report.line,ownership_type:0
+#: selection:gps.trip.report.line,ownership_type:0
+#: selection:gps.zone.report.line,ownership_type:0
+msgid "Own"
+msgstr "Өөрийн"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_fill_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "Ownership"
+msgstr "Эзэмшил"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_ownership_type
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_ownership_type
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_ownership_type
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_ownership_type
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_ownership_type
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_ownership_type
+msgid "Ownership type"
+msgstr "Эзэмшлийн төрөл"
+
+#. module: navixy_gps
+#: selection:fuel.report.analyze,ownership_type:0
+#: selection:gps.fuel.fill.report,ownership_type:0
+#: selection:gps.fuel.report.line,ownership_type:0
+#: selection:gps.stop.report.line,ownership_type:0
+#: selection:gps.trip.report.line,ownership_type:0
+#: selection:gps.zone.report.line,ownership_type:0
+msgid "Partner"
+msgstr "Харилцагч"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_product_id
+msgid "Product"
+msgstr "Бүсийн төрөл"
+
+#. module: navixy_gps
+#: selection:fuel.report.analyze,ownership_type:0
+#: selection:gps.fuel.fill.report,ownership_type:0
+#: selection:gps.fuel.report.line,ownership_type:0
+#: selection:gps.stop.report.line,ownership_type:0
+#: selection:gps.trip.report.line,ownership_type:0
+#: selection:gps.zone.report.line,ownership_type:0
+msgid "Rental"
+msgstr "Түрээс"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_report_id
@@ -406,6 +649,15 @@ msgstr "Report id"
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_ids
 msgid "Report lines"
 msgstr "Тайлангийн мөрүүд"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "September"
+msgstr "9-р сар"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_start_bal
@@ -435,6 +687,7 @@ msgstr "Зогсолтын тайлан"
 #. module: navixy_gps
 #: model:ir.actions.act_window,name:navixy_gps.technic_gps_stop_report_line_action
 #: model:ir.ui.menu,name:navixy_gps.gps_stop_report_line_menu
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
 msgid "Stop report lines"
 msgstr "Зогсолтын мөрүүд"
 
@@ -445,10 +698,17 @@ msgstr "Зогсолтууд"
 
 #. module: navixy_gps
 #: model:ir.model,name:navixy_gps.model_technic
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_fill_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
 msgid "Technic"
 msgstr "Техник"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_technic_id
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_technic_id
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_technic_id
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_technic_id
@@ -458,9 +718,52 @@ msgid "Technic id"
 msgstr "Техник"
 
 #. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_fill_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "Technic model"
+msgstr "Техникийн загвар"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_technic_model_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_technic_model_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_technic_model_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_technic_model_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_technic_model_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_technic_model_id
+msgid "Technic model id"
+msgstr "Техникийн загвар"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "This Month"
+msgstr "Энэ сар"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "This Year"
+msgstr "Энэ жил"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_time_string
 msgid "Time"
-msgstr "Зорчсон хугацаа"
+msgstr "Цаг"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_time_hour
+msgid "Time hour"
+msgstr "Ажилласан цаг"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_time_sec
@@ -474,10 +777,20 @@ msgid "To"
 msgstr "Төгсгөл"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_to_product
+msgid "To Zone type"
+msgstr "Гарсан бүсийн төрөл"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_to_time
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_to_time
 msgid "To time"
 msgstr "Төгссөн цаг"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_time_hour
+msgid "Trip hour"
+msgstr "Зорчсон цаг"
 
 #. module: navixy_gps
 #: model:ir.actions.act_window,name:navixy_gps.technic_gps_trip_report_action
@@ -524,6 +837,14 @@ msgstr "Бүсийн тайлан"
 #: model:ir.ui.menu,name:navixy_gps.gps_zone_report_line_menu
 msgid "Zone report lines"
 msgstr "Бүсэд зорчсон мөрүүд"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_product_id
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_product_id
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "Zone type"
+msgstr "Бүсийн төрөл"
 
 #. module: navixy_gps
 #: model:ir.model,name:navixy_gps.model_gps_fuel_fill_report
@@ -580,3 +901,12 @@ msgstr "gps.zone.report"
 msgid "gps.zone.report.line"
 msgstr "gps.zone.report.line"
 
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
+msgid "trip report lines"
+msgstr "trip report lines"
+
+#. module: navixy_gps
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
+msgid "zone report lines"
+msgstr "zone report lines"
