@@ -4,7 +4,7 @@ import requests, datetime, re, pytz
 import logging
 _logger = logging.getLogger(__name__)
 
-GPS_MODELS = ['gps.trip.report','gps.stop.report','gps.zone.report','gps.fuel.report']
+GPS_MODELS = ['gps.trip.report','gps.stop.report','gps.zone.report','gps.fuel.report','gps.motohour.report']
 HEADERS = {'Accept': 'application/json'}
 NAVIXY_TZ = pytz.timezone('Asia/Ulaanbaatar')
 
