@@ -186,6 +186,11 @@ msgid "Duration hour"
 msgstr "Үргэлжилсэн цаг"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_duration_hour
+msgid "Duration hour"
+msgstr "Мото цаг"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_end_bal
 msgid "End balance"
 msgstr "Эцсийн үлдэгдэл"
@@ -388,6 +393,11 @@ msgid "In location"
 msgstr "Бүсэд орсон"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_in_movement_hour
+msgid "In movement hours"
+msgstr "Зорчсон цаг"
+
+#. module: navixy_gps
 #: selection:gps.fuel.report,state:0
 #: selection:gps.report,state:0
 #: selection:gps.stop.report,state:0
@@ -496,6 +506,7 @@ msgstr "Зай км"
 #: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_line_date
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_line_datetime
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_line_date
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_line_date
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_line_date
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_line_date
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_line_date
@@ -536,6 +547,18 @@ msgstr "5-р сар"
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_mileage
 msgid "Mileage"
 msgstr "Туулсан км"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_motohour_report_action
+#: model:ir.ui.menu,name:navixy_gps.gps_motohour_report_menu
+msgid "Motohour report"
+msgstr "Мотоцагийн тайлан"
+
+#. module: navixy_gps
+#: model:ir.actions.act_window,name:navixy_gps.technic_gps_motohour_report_line_action
+#: model:ir.ui.menu,name:navixy_gps.gps_motohour_report_line_menu
+msgid "Motohour report lines"
+msgstr "Мотоцагийн мөрүүд"
 
 #. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_navixy_id
@@ -603,6 +626,7 @@ msgstr "Эзэмшил"
 #: model:ir.model.fields,field_description:navixy_gps.field_fuel_report_analyze_ownership_type
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_ownership_type
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_report_line_ownership_type
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_ownership_type
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_stop_report_line_ownership_type
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_trip_report_line_ownership_type
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_zone_report_line_ownership_type
@@ -665,6 +689,26 @@ msgid "Start balance"
 msgstr "Эхний үлдэгдэл"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_start_time
+msgid "Start time"
+msgstr "Хөдөлгүүр ассан цаг"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_end_time
+msgid "End time"
+msgstr "Хөдөлгүүр унтарсан цаг"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_start_loc
+msgid "Start location"
+msgstr "Хөдөлгүүр ассан байршил"
+
+#. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_end_loc
+msgid "End location"
+msgstr "Хөдөлгүүр унтарсан байршил"
+
+#. module: navixy_gps
 #: model:ir.model.fields,field_description:navixy_gps.field_gps_fuel_fill_report_start_vol
 msgid "Start volume"
 msgstr "Эхний үлдэгдэл"
@@ -698,9 +742,11 @@ msgstr "Зогсолтууд"
 
 #. module: navixy_gps
 #: model:ir.model,name:navixy_gps.model_technic
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_technic_id
 #: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_fill_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_motohour_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search
@@ -718,9 +764,11 @@ msgid "Technic id"
 msgstr "Техник"
 
 #. module: navixy_gps
+#: model:ir.model.fields,field_description:navixy_gps.field_gps_motohour_report_line_technic_model_id
 #: model:ir.ui.view,arch_db:navixy_gps.view_fuel_report_analyze_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_fill_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_fuel_report_line_search
+#: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_motohour_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_stop_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_trip_report_line_search
 #: model:ir.ui.view,arch_db:navixy_gps.view_technic_gps_zone_report_line_search

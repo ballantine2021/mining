@@ -76,6 +76,30 @@ def flatten_stops(res, token):
                 })
     return rec
 
+def flatten_motohours(res, token):
+    if not (check_token(token)):
+        return False
+    rec = []
+    for sheet in res['report']['sheets']:
+        if sheet['entity_ids']:
+            for section in sheet['sections']:
+                if section.has_key('header'):
+                    if u'дэлгэрэнгүй' in section['header']:
+                        for day in section['data']:
+                            for row in day['rows']:
+                                date_char = day['header'].split('(')[0].strip()
+                                rec.append({
+                                    'tracker_id': sheet['entity_ids'][0],
+                                    'date': date_char,
+                                    'start_loc': row['start']['v'],
+                                    'end_loc': row['end']['v'],
+                                    'start_time': row['start_time']['v'],
+                                    'end_time': row['end_time']['v'],
+                                    'duration': row['duration']['raw'],
+                                    'in_movement': row['in_movement']['raw'],
+                                })
+    return rec
+
 def flatten_fuel_report(res, token):
     if not (check_token(token)):
         return False

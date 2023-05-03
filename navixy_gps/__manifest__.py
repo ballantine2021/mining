@@ -16,6 +16,7 @@
         'views/stop_report_views.xml',
         'views/zone_report_views.xml',
         'views/fuel_report_views.xml',
+        'views/motohour_report_views.xml',
         'report/fuel_report_analyze_view.xml',
         'data/ir_cron.xml',
         'security/ir.model.access.csv'

@@ -9,5 +9,7 @@ access_gps_zone_report,access.gps.zone.report,model_gps_zone_report,l10n_mn_tech
 access_gps_zone_report_line,access.gps.zone.report.line,model_gps_zone_report_line,l10n_mn_technic.group_manager,1,1,1,1
 access_gps_fuel_report,access.gps.fuel.report,model_gps_fuel_report,l10n_mn_technic.group_manager,1,1,1,1
 access_gps_fuel_report_line,access.gps.fuel.report.line,model_gps_fuel_report_line,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_motohour_report,access.gps.motohour.report,model_gps_motohour_report,l10n_mn_technic.group_manager,1,1,1,1
+access_gps_motohour_report_line,access.gps.motohour.report.line,model_gps_motohour_report_line,l10n_mn_technic.group_manager,1,1,1,1
 access_gps_fuel_fill_report,access.gps.fuel.fill.report,model_gps_fuel_fill_report,l10n_mn_technic.group_manager,1,1,1,1
 access_fuel_report_analyze,access.fuel.report.analyze,model_fuel_report_analyze,l10n_mn_technic.group_manager,1,1,1,1

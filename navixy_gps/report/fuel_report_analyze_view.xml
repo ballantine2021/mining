@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_fuel_report_analyze_search" model="ir.ui.view">
+            <field name="name">fuel.report.analyze.search</field>
+            <field name="model">fuel.report.analyze</field>
+            <field name="arch" type="xml">
+                <search string="Fuel analyze report">
+                    <field name="line_date"/>
+                    <field name="technic_id"/>
+                    <field name="ownership_type"/>
+                    <field name="technic_model_id"/>
+                    <filter name="this_month" string="This Month" domain="[('line_date','like',time.strftime('%%Y-%%m'))]"/>
+                    <filter name="january" string="January" domain="[('line_date','like',time.strftime('%%Y-01'))]"/>
+                    <filter name="february" string="February" domain="[('line_date','like',time.strftime('%%Y-02'))]"/>
+                    <filter name="march" string="March" domain="[('line_date','like',time.strftime('%%Y-03'))]"/>
+                    <filter name="April" string="April" domain="[('line_date','like',time.strftime('%%Y-04'))]"/>
+                    <filter name="may" string="May" domain="[('line_date','like',time.strftime('%%Y-05'))]"/>
+                    <filter name="june" string="June" domain="[('line_date','like',time.strftime('%%Y-06'))]"/>
+                    <filter name="july" string="July" domain="[('line_date','like',time.strftime('%%Y-07'))]"/>
+                    <filter name="august" string="August" domain="[('line_date','like',time.strftime('%%Y-08'))]"/>
+                    <filter name="september" string="September" domain="[('line_date','like',time.strftime('%%Y-09'))]"/>
+                    <filter name="octomber" string="Octomber" domain="[('line_date','like',time.strftime('%%Y-10'))]"/>
+                    <filter name="november" string="November" domain="[('line_date','like',time.strftime('%%Y-11'))]"/>
+                    <filter name="december" string="December" domain="[('line_date','like',time.strftime('%%Y-12'))]"/>
+                    <filter name="year" string="This Year" domain="[('line_date','like',time.strftime('%%Y'))]"/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Ownership" name="ownership" context="{'group_by':'ownership_type'}"/>
+                        <filter string="Date (month)" icon="terp-go-month" context="{'group_by':'line_date:month'}"/>
+                        <filter string="Technic" context="{'group_by':'technic_id'}"/>
+                        <filter string="Technic model" context="{'group_by':'technic_model_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+       <record id="action_fuel_report_analyze_tree" model="ir.actions.act_window">
+            <field name="name">Fuel report analyze</field>
+            <field name="res_model">fuel.report.analyze</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot</field>
+            <field name="search_view_id" ref="view_fuel_report_analyze_search"/>
+            <field name="context">{'search_default_this_month':1,'group_by':['ownership_type', 'technic_id']}</field>
+            <field name="help"></field>
+        </record>
+
+        <menuitem action="action_fuel_report_analyze_tree" id="fuel_analyze_report_menu"
+            parent="gps_report_menu"
+            sequence="51"/>
+    </data>
+</odoo>
