@@ -36,11 +36,7 @@ class GPSZone(models.Model):
         if zone:
             parsed = zone.group(1)
         else:
-            text_split = txt.split('-')
-            if len(text_split)>1:
-                parsed = text_split[1]
-            else:
-                parsed = text_split
-        for rec in self.search([('name','in',parsed)]):
+            parsed = txt.split('-')[-1]
+        for rec in self.search([('name','in',[parsed])]):
             return rec.id
-        return self.create({'name': parsed[0]}).id
+        return self.create({'name': parsed}).id

@@ -50,5 +50,10 @@
             <field name="value">striker</field>
         </record>
 
+        <record id="config_min_minutes_in_zone" model="ir.config_parameter">
+            <field name="key">min_minutes_in_zone</field>
+            <field name="value">2</field>
+        </record>
+
     </data>
 </odoo>

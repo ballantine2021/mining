@@ -16,13 +16,14 @@ class GPSZoneReport(models.Model):
     line_ids        = fields.One2many('gps.zone.report.line', 'report_id', 'Report lines', readonly=True)
 
     def get_plugin(self):
+        minutes = self.env['gps.report'].get_config('config_min_minutes_in_zone')
         return  {
             "hide_empty_tabs":True,
             "plugin_id":8,
             "show_seconds":False,
             "show_mileage":False,
             "show_not_visited_zones":False,
-            "min_minutes_in_zone":5,
+            "min_minutes_in_zone":minutes,
             "hide_charts":True,
             "zone_ids":[z.navixy_id for z in self.env['gps.zone'].search([('navixy_id','!=',False)])]}
 
