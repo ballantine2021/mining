@@ -41,6 +41,6 @@ class GPSZone(models.Model):
                 parsed = text_split[1]
             else:
                 parsed = text_split
-        for rec in self.search([('name','=',parsed)]):
+        for rec in self.search([('name','in',parsed)]):
             return rec.id
-        return self.create({'name': parsed}).id
+        return self.create({'name': parsed[0]}).id
